@@ -150,35 +150,35 @@ necessary because we are using a distributed framework, and each separate core m
 ```python
 def simulate(self, verbose=False, tracking=False):
 
-engine = create_engine(
-    'postgresql://username:password@pga-postgresql.cxmbk6ooy1lu.us-east-1.rds.amazonaws.com/pga')
-conn = engine.connect()
-self.tournaments = pd.read_sql("SELECT tournamentid FROM tournament", conn).values[::-1]
+  engine = create_engine(
+      'postgresql://username:password@pga-postgresql.cxmbk6ooy1lu.us-east-1.rds.amazonaws.com/pga')
+  conn = engine.connect()
+  self.tournaments = pd.read_sql("SELECT tournamentid FROM tournament", conn).values[::-1]
 
-for x in range(len(self.tournaments)):
-    self.t[int(self.tournaments[x])] = x
+  for x in range(len(self.tournaments)):
+      self.t[int(self.tournaments[x])] = x
 
-self.tourneys = [int(x) for x in
-                 self.tournaments[int(np.where(self.tournaments == self.start_tournament)[0]):int(
-                     np.where(self.tournaments == self.entry_tournament)[0]) + 1]]
+  self.tourneys = [int(x) for x in
+                   self.tournaments[int(np.where(self.tournaments == self.start_tournament)[0]):int(
+                       np.where(self.tournaments == self.entry_tournament)[0]) + 1]]
 
-self.start_date =
-    conn.execute(f'SELECT startdate FROM tournament WHERE tournamentid = {self.start_tournament}').fetchone()[0]
-self.entry_date =
-    conn.execute(f'SELECT startdate FROM tournament WHERE tournamentid = {self.entry_tournament}').fetchone()[0]
-conn.close()
+  self.start_date =
+      conn.execute(f'SELECT startdate FROM tournament WHERE tournamentid = {self.start_tournament}').fetchone()[0]
+  self.entry_date =
+      conn.execute(f'SELECT startdate FROM tournament WHERE tournamentid = {self.entry_tournament}').fetchone()[0]
+  conn.close()
 
-warnings.simplefilter(action='ignore', category=(FutureWarning, UserWarning, DeprecationWarning))
-np.random.seed(seed=0)
+  warnings.simplefilter(action='ignore', category=(FutureWarning, UserWarning, DeprecationWarning))
+  np.random.seed(seed=0)
 
 
-self._clean_data()
-self._run_historical_simulation()
+  self._clean_data()
+  self._run_historical_simulation()
 
-if not self.predictions_only:
-    self._backtest_contest_results()
-    if verbose:
-        self._print_results()
+  if not self.predictions_only:
+      self._backtest_contest_results()
+      if verbose:
+          self._print_results()
 ```
 ### Grabbing Player Data from Database and Data Cleaning
 
