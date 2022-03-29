@@ -44,8 +44,6 @@ live. I will go into greater detail about each of these sections, and the functi
 ### Imports
 
 ```python
-# %% import packages
-
 import warnings
 
 import numpy as np
