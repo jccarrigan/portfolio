@@ -14,7 +14,7 @@ Please also refer to the script of similar name in the scripts folder to underst
 advantage of many software development ideas such as nested functions, and object oriented programming. Nested functions \
 are utilized to limit the accessibility of certain functionality and to manage variable states.
 
-The script below is designed to accomplish three things, make predictions regarding player performance for a certain slate \
+The script below is designed to accomplish three things: make predictions regarding player performance for a certain slate \
 of games, use those predictions in selecting lineups for certain DFS contests, and backtest how those lineups would've performed \
 live. I will go into greater detail about each of these sections, and the functionality defined within below.
 
