@@ -43,7 +43,7 @@ live. I will go into greater detail about each of these sections, and the functi
 * Closing Thoughts
 ***
 
-###Imports
+### Imports
 
 ```python
 # %% import packages
