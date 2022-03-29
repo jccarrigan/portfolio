@@ -38,9 +38,7 @@ live. I will go into greater detail about each of these sections, and the functi
 * Backtesting Algorithm Workflow
 * Backtesting Algorithm Logic\
   <br>
-* Output Results to Console\
-  <br>
-* Closing Thoughts
+* Output Results to Console
 ***
 
 ### Imports
@@ -55,7 +53,7 @@ import pandas as pd
 from autokeras import StructuredDataRegressor
 from dask import delayed, compute
 from dask.distributed import Client
-# from autogluon import TabularPrediction as task
+from autogluon import TabularPrediction as task
 from ngboost import NGBRegressor
 from pydfs_lineup_optimizer import get_optimizer, Site, Sport, Player, LineupOptimizerException
 from sklearn.metrics import mean_squared_error, mean_absolute_error
@@ -303,7 +301,6 @@ the data profile, the logic being it will improve prediction performance.
             new = df.drop(self.target + self.salaries[:2], axis=1).groupby(level=0).shift(1)
 
         df = df[self.target + self.salaries[:2]].merge(new, left_index=True, right_index=True)
-        # df.drop(target, axis=1).dropna(inplace=True, axis=0)
 
         df['y_diff'] = pd.concat(
             [z.diff(1) for z in [y for x, y in df.fantasypointsdraftkings.groupby(level=0)]],
@@ -502,7 +499,7 @@ programming to optimize the lineup selection process based off predicted player 
 
             if tournament == self.entry_tournament:
                 exports = pd.DataFrame(export, columns=['G'] * 6)
-                # exports.to_csv('/mnt/efs/' + str(tournament) + '-' + str(slate) + 'lineupexports.csv', index=False)
+                exports.to_csv('/mnt/efs/' + str(tournament) + '-' + str(slate) + 'lineupexports.csv', index=False)
 
             lineup_result = [tournament, slate, lineups, points, pts_summary]
             return lineup_result
@@ -813,8 +810,8 @@ omitted for privacy reasons.
 ```python
 if __name__ == '__main__':
     client = Client()
-    short_term = PgaSimulator(training_tournaments=4)
-    short_term.simulate()
+    pga = PgaSimulator(training_tournaments=4)
+    pga.simulate()
 ```
 ***
 
