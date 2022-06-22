@@ -117,7 +117,7 @@ def dask_output(contests):
 
 # %%
 
-engine = create_engine('postgresql://jc:M()$@l@h!1@pga-postgresql.cxmbk6ooy1lu.us-east-1.rds.amazonaws.com/pga')
+engine = create_engine('postgresql://@pga-postgresql.cxmbk6ooy1lu.us-east-1.rds.amazonaws.com/pga')
 conn = engine.connect()
 
 contests = conn.execute(
